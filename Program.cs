@@ -19,24 +19,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options =>
     {
-        // Sign In
         options.SignIn.RequireConfirmedAccount = false;
 
-        // Password
         options.Password.RequiredLength = 6;
         options.Password.RequireDigit = true;
         options.Password.RequireUppercase = true;
         options.Password.RequireLowercase = true;
         options.Password.RequireNonAlphanumeric = false;
 
-        // Lockout
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 
-        // User
         options.User.RequireUniqueEmail = true;
     })
-    .AddRoles<IdentityRole>()                        // Enable Roles
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
@@ -62,6 +58,25 @@ builder.Services.AddSession(options =>
 // Build App
 // ==========================================
 var app = builder.Build();
+
+// ==========================================
+// Automatically Apply Database Migrations
+// ==========================================
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
+        dbContext.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Migration Error: {ex.Message}");
+    }
+}
 
 // ==========================================
 // Configure HTTP Pipeline
