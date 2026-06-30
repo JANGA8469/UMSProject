@@ -1,0 +1,135 @@
+@model UMSProject.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold">Dashboard</h2>
+            <p class="text-muted">Welcome to User Management System</p>
+        </div>
+
+        <a asp-controller="Users"
+           asp-action="Create"
+           class="btn btn-primary">
+
+            <i class="fa-solid fa-user-plus"></i>
+            Add User
+
+        </a>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stat-card blue">
+
+                <i class="fa-solid fa-users fa-2x mb-3"></i>
+
+                <h2>@Model.TotalUsers</h2>
+
+                <p>Total Users</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stat-card green">
+
+                <i class="fa-solid fa-user-check fa-2x mb-3"></i>
+
+                <h2>@Model.ActiveUsers</h2>
+
+                <p>Active Users</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stat-card orange">
+
+                <i class="fa-solid fa-user-shield fa-2x mb-3"></i>
+
+                <h2>@Model.TotalRoles</h2>
+
+                <p>Roles</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stat-card red">
+
+                <i class="fa-solid fa-building fa-2x mb-3"></i>
+
+                <h2>4</h2>
+
+                <p>Departments</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            <h5 class="mb-0">
+                Recent Users
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td colspan="3" class="text-center">
+
+                            Recent users will appear here.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

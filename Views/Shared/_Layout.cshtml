@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - User Management System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Site CSS -->
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+</head>
+
+<body class="bg-light">
+
+    <!-- ===================== NAVBAR ===================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top"
+         style="background:linear-gradient(90deg,#2563EB,#1E40AF);">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold"
+               asp-controller="Dashboard"
+               asp-action="Index">
+
+                <i class="fa-solid fa-users me-2"></i>
+
+                UMS
+
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse"
+                 id="navbarNav">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-controller="Dashboard"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-controller="Users"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            Users
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-controller="Roles"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-user-shield"></i>
+
+                            Roles
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-controller="Profile"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-user-circle"></i>
+
+                            My Profile
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+                <partial name="_LoginPartial" />
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- ===================== PAGE HEADER ===================== -->
+
+    <div class="bg-white shadow-sm border-bottom">
+
+        <div class="container py-4">
+
+            <h2 class="fw-bold text-primary mb-0">
+
+                @ViewData["Title"]
+
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+
+    <main>
+
+        <div class="container py-4">
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show">
+
+                    @TempData["Success"]
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show">
+
+                    @TempData["Error"]
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+            }
+
+            @RenderBody()
+
+        </div>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+
+    <footer class="bg-dark text-white mt-5">
+
+        <div class="container py-3 text-center">
+
+            <small>
+
+                © 2026 User Management System |
+                ASP.NET Core MVC |
+                Entity Framework Core |
+                SQLite
+
+            </small>
+
+        </div>
+
+    </footer>
+
+    <!-- ===================== Scripts ===================== -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
